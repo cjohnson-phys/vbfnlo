@@ -16,9 +16,9 @@ c*************************************************************************
       
       major = 2               ! first digit
       minor = 7               ! second digit
-      patch = 1               ! third digit
-      substr = ""             ! beta/rc
-      subnum = 0              ! number for beta/rc
+      patch = 2               ! third digit
+      substr = "beta"         ! beta/rc
+      subnum = 1              ! number for beta/rc
 
       ! allows both subversion revision number and git hash
 

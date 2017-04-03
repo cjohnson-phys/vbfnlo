@@ -29,7 +29,7 @@ c...input for Les Houches interface
       integer numParticles
       integer maxNumSubProc
       parameter(numParticles=8) 
-      parameter(maxNumSubProc=3000) 
+      parameter(maxNumSubProc=4000) 
 c...the most subprobable process for LHA interface 
       integer iprocess
       common /process/ iprocess	

@@ -619,6 +619,7 @@ c     gauge term for Z/W propagator:
          enddo                  !isig3
       enddo                     ! isig1  
       
+#ifdef WITH_NLO
       if(lbox) then 
 
 !     W- from upper line:
@@ -762,6 +763,7 @@ c     gauge term for Z/W propagator:
             endif
          enddo                  !k
       endif                     !lbox
+#endif
 
 c------------------------------------------------------------
       
@@ -865,6 +867,7 @@ c     (gauge terms for massive gauge boson propagators
 c     not needed when contracted with boxes)
 
 
+#ifdef WITH_NLO
       if (lbox) then
          do i = 0,3
             pvirtcalc(i,1) = p(i,3)
@@ -1017,6 +1020,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
          enddo
 
       endif                     !lbox
+#endif
       
 
 c     -----------------------------------------------------------------------
@@ -1124,6 +1128,7 @@ c     wwv(mu)             with momentum    pwa
          enddo
       enddo                     !isig3	    
 
+#ifdef WITH_NLO
       if(lbox) then
 !     box correction to upper line
          do i = 0,3
@@ -1168,6 +1173,7 @@ c     wwv(mu)             with momentum    pwa
          enddo                  ! div
 
       endif                     ! lbox
+#endif
 
 c     box correction to lower line: polarization vectors are 
 c     jqq(mu,isig1,1)=j21 with momentum    p21        and
@@ -1214,6 +1220,7 @@ c     wtowa(mu)         with momentum    pwa
          endif                  !isig1
       enddo                     !isig1	    
 
+#ifdef WITH_NLO
       if(lbox) then
 !     box correction to lower line
          do i = 0,3
@@ -1394,6 +1401,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
          enddo
 c     end of kk term calculation
       endif                     !lbox
+#endif
 
 
  
@@ -1460,6 +1468,7 @@ c     for the q^mu*q^nu/M_V^2 terms in the gauge boson propagators we need
          endif 
       enddo                     !isig1
 
+#ifdef WITH_NLO
       if(lbox) then
 c     W from upper line, A from lower line, box correction to upper line
          do idl = 3,4
@@ -1777,6 +1786,7 @@ c     end of kk term calculation
 
          enddo                  ! idu
       endif                     !lbox
+#endif
 
 
 c     
@@ -1880,6 +1890,7 @@ c     --------------
       
 c     ----------------------
       
+#ifdef WITH_NLO
       if (lbox) then
          
          do div = 0,divMax,divStep
@@ -1977,6 +1988,7 @@ c     --------------
             enddo               !isig3
          enddo                  !div
       endif                     !lbox
+#endif
       
 c     ------------------------------------------------------------------------------
       
@@ -2012,6 +2024,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
       enddo                     ! isig3
 
 
+#ifdef WITH_NLO
       if (lpent) then	
          do i = 0,3
             pvirtcalc(i,1) = -1d0 * p(i,1)
@@ -2045,6 +2058,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
             enddo
          enddo
       endif                     !lpent
+#endif
 
 
       do isig3 = -1,1,2 
@@ -2062,6 +2076,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $           +m5(1,kb,3,isig1,isig3)*clr(7-ifl(1,k),kb,isig1)
      $           +m5(1,3,kb,isig1,isig3)*clr(ifl(2,k),kb,isig1))*(-1.)
             
+#ifdef WITH_NLO
             if (lpent)  then
                do div = 0,divMax,divStep
                   matv(k,isig1,isig3,7,div) = matv(k,isig1,isig3,7,div) + 
@@ -2071,6 +2086,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $                 +mv5(1,3,kb,isig1,isig3,div)*clr(ifl(2,k),kb,isig1) )*(-1.)
                enddo
             endif
+#endif
 
             k = 2
             
@@ -2080,6 +2096,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $           +m5(3,kb,3,isig1,isig3)*clr(ifl(1,k),kb,isig1)
      $           +m5(2,3,kb,isig1,isig3)*clr(ifl(2,k),kb,isig1) )*(-1.)
             
+#ifdef WITH_NLO
             if (lpent) then
                do div = 0,divMax,divStep
                   matv(k,isig1,isig3,7,div) = matv(k,isig1,isig3,7,div) 
@@ -2089,6 +2106,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $                 +mv5(2,3,kb,isig1,isig3,div)*clr(ifl(2,k),kb,isig1) )*(-1.)
                enddo
             endif
+#endif
             
          endif                  !isig3
          
@@ -2106,6 +2124,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $              +m5(3,kb,3,isig1,isig3)*clr(ifl(1,k),kb,isig1)*clr(ifl(2,k),kp,isig1))*(-1.)
 
                
+#ifdef WITH_NLO
                if (lpent) then
                   do div = 0,divMax,divStep
                      matv(k,isig1,isig3,7,div) = matv(k,isig1,isig3,7,div) + 
@@ -2118,6 +2137,7 @@ c     eps1=v1,eps2=v2,eps3=j43 with v3 arbitrary
      $                    +mv5(3,kb,3,isig1,isig3,div)*clr(ifl(1,k),kb,isig1)*clr(ifl(2,k),kp,isig1))*(-1.)
                   enddo
                endif
+#endif
             enddo               !kp
          enddo                  !k
       enddo                     !isig3
@@ -2154,6 +2174,7 @@ c     eps1=v1,eps2=v2,eps3=j21 with v3 arbitrary
 
       enddo                     !isig1
 
+#ifdef WITH_NLO
       if (lpent) then	
          do i = 0,3
             pvirtcalc(i,1) = p(i,3)
@@ -2188,6 +2209,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             enddo               ! isig1
          enddo                  !div
       endif                     !lpent
+#endif
 
       do isig1 = -1,1,2 
 	 isig3 = -1
@@ -2204,6 +2226,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      $           +m5(1,3,kb,isig1,isig3)*clr(ifl(4,k),kb,isig3)
      $           +m5(1,kb,3,isig1,isig3)*clr(7-ifl(3,k),kb,isig3))*(-1.)
             
+#ifdef WITH_NLO
             if (lpent) then
                do div = 0,divMax,divStep
                   matv(k,isig1,isig3,8,div) = matv(k,isig1,isig3,8,div) 
@@ -2213,6 +2236,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      $                 +mv5(1,kb,3,isig1,isig3,div)*clr(7-ifl(3,k),kb,isig3))*(-1.)
                enddo
             endif
+#endif
 
             k = 4
             
@@ -2222,6 +2246,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      $           +m5(3,kb,3,isig1,isig3)*clr(ifl(3,k),kb,isig3)
      $           +m5(2,3,kb,isig1,isig3)*clr(ifl(4,k),kb,isig3))*(-1.)
             
+#ifdef WITH_NLO
             if (lpent) then
                do div = 0,divMax,divStep
                   matv(k,isig1,isig3,8,div) = matv(k,isig1,isig3,8,div) 
@@ -2232,6 +2257,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
                enddo
             endif
+#endif
          endif                  !isig1
          
          do k= 1,2
@@ -2248,6 +2274,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      $              +m5(3,kb,3,isig1,isig3)*clr(ifl(3,k),kb,isig3)*clr(ifl(4,k),kp,isig3))*(-1.)
 
                
+#ifdef WITH_NLO
                if (lpent) then
                   do div = 0,divMax,divStep                  
                      matv(k,isig1,isig3,8,div) = matv(k,isig1,isig3,8,div) +
@@ -2260,6 +2287,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      $                    +mv5(3,kb,3,isig1,isig3,div)*clr(ifl(3,k),kb,isig3)*clr(ifl(4,k),kp,isig3))*(-1.)
                   enddo
                endif
+#endif
 
             enddo               !kp
          enddo                  !k
@@ -2269,6 +2297,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c     -------------------------------------------------------------
 
  
+#ifdef WITH_NLO
       if(lbox) then
          do i = 1,wardIndex-1
             lwardBox = lwardBox.and.lwardtest(i)
@@ -2292,6 +2321,7 @@ c     -------------------------------------------------------------
       endif
 
       lward = lwardBox .and. lwardPent
+#endif
 
 c     ------------------------------------------------------------------------------
 c     ------------------------------------------------------------------------------

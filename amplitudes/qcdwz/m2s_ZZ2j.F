@@ -606,7 +606,7 @@ c add A and Z current including couplings to u and d quarks
 
 
 c reset subprocess counter
-      ires_min = FL4QCDVV(id,id,-100000) +1 
+      ires_min = FL4QCDVV(id,id,-sub_number) +1 
 
 
 
@@ -1029,9 +1029,11 @@ c sum over q flavors and colors
         iflav(id(3)) = q*fsign(3)
         qt=3+mod(q,2)
         do colstr = 1,2
+          iflav(id(2)) = 21
+          iflav(id(4)) = 21
+          k = FL4qcdVV(iflav,id,colstr)
           iflav(id(2)) = 0
           iflav(id(4)) = 0
-          k = FL4qcdVV(iflav,id,colstr)
           if(nlo.eq.3) then
             res(k) = 0d0
             if(colstr.eq.1) res(k) = QCDVVjjFinCollBornKin(p,xiFinColl,id,fsign,iflav,0,nbos,pdf) ! born is included here
